@@ -63,6 +63,7 @@ const App = () => {
         <HoldMenuProvider
           iconComponent={FeatherIcon}
           theme={state.theme}
+          disableBlur={true}
           safeAreaInsets={safeAreaInsets}
         >
           <NavigationContainer>

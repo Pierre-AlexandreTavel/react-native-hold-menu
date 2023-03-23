@@ -115,7 +115,7 @@ const Playground = ({}: PlaygroundProps) => {
               <View style={[themeStyles.dot, styles.topCenter]} />
             </View>
           </HoldItem>
-          <HoldItem items={items}>
+          <HoldItem items={items} activateOn={'tap'}>
             <View style={themeStyles.item}>
               <View style={[themeStyles.dot, styles.topRight]} />
             </View>
@@ -133,7 +133,7 @@ const Playground = ({}: PlaygroundProps) => {
             <View style={[themeStyles.dot, styles.bottomCenter]} />
           </View>
         </HoldItem>
-        <HoldItem menuAnchorPosition="bottom-right" items={items}>
+        <HoldItem menuAnchorPosition="bottom-right" items={items} activateOn={'tap'}>
           <View style={themeStyles.item}>
             <View style={[themeStyles.dot, styles.bottomRight]} />
           </View>
