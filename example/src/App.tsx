@@ -54,6 +54,14 @@ const App = () => {
     };
   }, [state]);
 
+  const onOpen = useCallback(() => {
+    console.log('App onOpen')
+  }, []);
+
+  const onClose = useCallback(() => {
+    console.log('App onClose')
+  }, []);
+
   return (
     <>
       <AppContext.Provider value={appContextVariables}>
@@ -65,6 +73,8 @@ const App = () => {
           theme={state.theme}
           safeAreaInsets={safeAreaInsets}
           disableBlur={true}
+          onOpen={onOpen}
+          onClose={onClose}
         >
           <NavigationContainer>
             <Stack.Navigator
