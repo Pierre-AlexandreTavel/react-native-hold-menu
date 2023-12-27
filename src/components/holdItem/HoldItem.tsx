@@ -41,8 +41,6 @@ import {
   HOLD_ITEM_SCALE_DOWN_DURATION,
   HOLD_ITEM_SCALE_DOWN_VALUE,
   SPRING_CONFIGURATION,
-  WINDOW_HEIGHT,
-  WINDOW_WIDTH,
   CONTEXT_MENU_STATE,
 } from '../../constants';
 import { useDeviceOrientation } from '../../hooks';
@@ -70,7 +68,7 @@ const HoldItemComponent = ({
 }: HoldItemProps) => {
   //#region hooks
   const { state, menuProps, safeAreaInsets } = useInternal();
-  const deviceOrientation = useDeviceOrientation();
+  const { deviceOrientation, windowHeight } = useDeviceOrientation();
   //#endregion
 
   //#region variables
@@ -138,7 +136,7 @@ const HoldItemComponent = ({
         const position = getTransformOrigin(
           measured.pageX,
           itemRectWidth.value,
-          deviceOrientation === 'portrait' ? WINDOW_WIDTH : WINDOW_HEIGHT,
+          deviceOrientation === 'portrait' ? windowHeight : windowHeight,
           bottom
         );
         transformOrigin.value = position;
@@ -149,8 +147,7 @@ const HoldItemComponent = ({
   const calculateTransformValue = () => {
     'worklet';
 
-    const height =
-      deviceOrientation === 'portrait' ? WINDOW_HEIGHT : WINDOW_WIDTH;
+    const height = windowHeight;
 
     const isAnchorPointTop = transformOrigin.value.includes('top');
 
@@ -172,6 +169,7 @@ const HoldItemComponent = ({
           bottomTransform < 0 ? -bottomTransform + styleGuide.spacing * 2 : 0;
       }
     }
+
     return tY;
   };
 

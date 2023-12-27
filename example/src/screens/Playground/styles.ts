@@ -5,7 +5,7 @@ import StyleGuide from '../../utilities/styleGuide';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: WINDOW_WIDTH,
+    // width: WINDOW_WIDTH,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     paddingBottom: StyleGuide.spacing * 2,
   },
   item: {
-    width: WINDOW_WIDTH / 5,
-    height: WINDOW_WIDTH / 5,
+    // width: WINDOW_WIDTH / 5,
+    // height: WINDOW_WIDTH / 5,
     paddingVertical: StyleGuide.spacing,
     borderRadius: StyleGuide.spacing * 1.5,
     display: 'flex',

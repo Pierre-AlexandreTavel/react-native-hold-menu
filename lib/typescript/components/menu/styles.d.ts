@@ -7,7 +7,6 @@ declare const styles: {
     menuContainer: {
         position: "absolute";
         top: number;
-        width: number;
         borderRadius: number;
         display: "flex";
         flexDirection: "row";

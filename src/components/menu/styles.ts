@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { MENU_WIDTH } from '../../constants';
 import styleGuide from '../../styleGuide';
 
 const styles = StyleSheet.create({
@@ -11,7 +10,6 @@ const styles = StyleSheet.create({
   menuContainer: {
     position: 'absolute',
     top: 0,
-    width: MENU_WIDTH,
     borderRadius: styleGuide.spacing * 1.5,
     display: 'flex',
     flexDirection: 'row',

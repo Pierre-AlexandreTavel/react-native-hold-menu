@@ -29,7 +29,7 @@ import {
 
 import styles from './styles';
 import { MenuItemProps } from './types';
-import { useInternal } from '../../hooks';
+import { useDeviceOrientation, useInternal } from '../../hooks';
 import { deepEqual } from '../../utils/validations';
 import { leftOrRight } from './calculations';
 
@@ -37,6 +37,7 @@ import { leftOrRight } from './calculations';
 
 const MenuListComponent = () => {
   const { state, theme, menuProps, disableBlur } = useInternal();
+  const { menuWidth } = useDeviceOrientation();
 
   const AnimatedView = useMemo(
     () =>
@@ -68,10 +69,11 @@ const MenuListComponent = () => {
       menuProps.value.anchorPosition,
       menuProps.value.itemWidth,
       menuProps.value.items.length,
-      itemsWithSeparator.length
+      itemsWithSeparator.length,
+      menuWidth
     );
 
-    const _leftPosition = leftOrRight(menuProps);
+    const _leftPosition = leftOrRight(menuProps, menuWidth);
 
     const menuScaleAnimation = () =>
       state.value === CONTEXT_MENU_STATE.ACTIVE
@@ -141,7 +143,7 @@ const MenuListComponent = () => {
     <AnimatedView
       intensity={100}
       animatedProps={animatedProps}
-      style={[styles.menuContainer, messageStyles]}
+      style={[styles.menuContainer, messageStyles, { width: menuWidth }]}
     >
       <Animated.View
         style={[

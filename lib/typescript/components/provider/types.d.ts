@@ -1,3 +1,5 @@
+import React from 'react';
+
 export interface HoldMenuProviderProps {
   /**
    * Theme of hold menu. Effects to backdrop and context menu styles. Optional.
@@ -28,4 +30,7 @@ export interface HoldMenuProviderProps {
     bottom: number;
     left: number;
   };
+
+  onOpen?: () => void;
+  onClose?: () => void;
 }

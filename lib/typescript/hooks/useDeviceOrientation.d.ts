@@ -1,3 +1,8 @@
 declare type Orientation = 'landscape' | 'portrait';
-declare function useDeviceOrientation(): Orientation;
+export declare const useDeviceOrientation: () => {
+    deviceOrientation: Orientation;
+    windowHeight: number;
+    windowWidth: number;
+    menuWidth: number;
+};
 export default useDeviceOrientation;

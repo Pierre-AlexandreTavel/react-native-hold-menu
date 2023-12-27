@@ -21,7 +21,6 @@ import {
   CONTEXT_MENU_STATE,
   HOLD_ITEM_TRANSFORM_DURATION,
   IS_IOS,
-  WINDOW_HEIGHT,
 } from '../../constants';
 import {
   BACKDROP_LIGHT_BACKGROUND_COLOR,
@@ -29,7 +28,7 @@ import {
   BACKDROP_NO_BLUR_LIGHT_BACKGROUND_COLOR,
   BACKDROP_NO_BLUR_DARK_BACKGROUND_COLOR,
 } from './constants';
-import { useInternal } from '../../hooks';
+import { useDeviceOrientation, useInternal } from '../../hooks';
 
 type Context = {
   startPosition: {
@@ -40,6 +39,7 @@ type Context = {
 
 const BackdropComponent = () => {
   const { state, theme, disableBlur } = useInternal();
+  const { windowHeight } = useDeviceOrientation();
 
   const AnimatedBlurView = useMemo(
     () =>
@@ -67,7 +67,6 @@ const BackdropComponent = () => {
         );
         const shouldClose = distance < 10;
         const isStateActive = state.value === CONTEXT_MENU_STATE.ACTIVE;
-
         if (shouldClose && isStateActive) {
           state.value = CONTEXT_MENU_STATE.END;
         }
@@ -82,7 +81,7 @@ const BackdropComponent = () => {
         ? 0
         : withDelay(
             HOLD_ITEM_TRANSFORM_DURATION,
-            withTiming(WINDOW_HEIGHT, {
+            withTiming(windowHeight, {
               duration: 0,
             })
           );
@@ -129,7 +128,11 @@ const BackdropComponent = () => {
         // @ts-ignore
         tint="default"
         animatedProps={animatedContainerProps}
-        style={[styles.container, animatedContainerStyle]}
+        style={[
+          styles.container,
+          animatedContainerStyle,
+          { backgroundColor: 'red' },
+        ]}
       >
         <Animated.View
           style={[

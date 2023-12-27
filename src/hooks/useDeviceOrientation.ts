@@ -1,28 +1,29 @@
-import { useState, useEffect } from 'react';
-import { Dimensions } from 'react-native';
+import { useState, useEffect, useMemo } from 'react';
+import { useWindowDimensions } from 'react-native';
 
 type Orientation = 'landscape' | 'portrait';
 
-function getWindowOrientation(): Orientation {
-  const { width, height } = Dimensions.get('window');
-  return height >= width ? 'portrait' : 'landscape';
-}
+export const useDeviceOrientation = () => {
+  const [orientation, setOrientation] = useState<Orientation>('landscape');
 
-function useDeviceOrientation() {
-  const [deviceOrientation, setDeviceOrientation] = useState<Orientation>(
-    getWindowOrientation()
-  );
+  const { height, width } = useWindowDimensions();
 
   useEffect(() => {
-    function updateState() {
-      setDeviceOrientation(getWindowOrientation());
+    if (width < height) {
+      setOrientation('portrait');
+    } else {
+      setOrientation('landscape');
     }
-    const changeEvent = Dimensions.addEventListener('change', updateState);
-    // @ts-ignore
-    return () => changeEvent.remove();
-  }, []);
+  }, [height, width]);
 
-  return deviceOrientation;
-}
+  const menuWidth = useMemo(() => (width * 60) / 100, [width]);
+
+  return {
+    deviceOrientation: orientation,
+    windowHeight: height,
+    windowWidth: width,
+    menuWidth,
+  };
+};
 
 export default useDeviceOrientation;

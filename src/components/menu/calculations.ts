@@ -1,6 +1,5 @@
 import Animated from 'react-native-reanimated';
 
-import { MENU_WIDTH } from '../../constants';
 import {
   MENU_TEXT_DARK_COLOR,
   MENU_TEXT_DESTRUCTIVE_COLOR_DARK,
@@ -11,7 +10,8 @@ import {
 import type { MenuInternalProps } from './types';
 
 export const leftOrRight = (
-  menuProps: Animated.SharedValue<MenuInternalProps>
+  menuProps: Animated.SharedValue<MenuInternalProps>,
+  menuWidth: number
 ) => {
   'worklet';
 
@@ -20,12 +20,12 @@ export const leftOrRight = (
 
   let leftPosition = 0;
   anchorPositionHorizontal === 'right'
-    ? (leftPosition = -MENU_WIDTH + itemWidth)
+    ? (leftPosition = -menuWidth + itemWidth)
     : anchorPositionHorizontal === 'left'
     ? (leftPosition = 0)
     : (leftPosition =
         -menuProps.value.itemWidth -
-        MENU_WIDTH / 2 +
+        menuWidth / 2 +
         menuProps.value.itemWidth / 2);
 
   return leftPosition;

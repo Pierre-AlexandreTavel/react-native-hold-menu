@@ -6,11 +6,14 @@ import { HoldItem } from 'react-native-hold-menu';
 import styles from './styles';
 import { useAppContext } from '../../hooks/useAppContext';
 import StyleGuide from '../../utilities/styleGuide';
+import { useDeviceOrientation } from '../../../../lib/module/hooks';
 
 interface PlaygroundProps {}
 
 const Playground = ({}: PlaygroundProps) => {
   const { theme } = useAppContext();
+
+  const {} = useDeviceOrientation();
 
   const items = [
     {
