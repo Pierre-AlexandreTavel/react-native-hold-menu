@@ -128,11 +128,7 @@ const BackdropComponent = () => {
         // @ts-ignore
         tint="default"
         animatedProps={animatedContainerProps}
-        style={[
-          styles.container,
-          animatedContainerStyle,
-          { backgroundColor: 'red' },
-        ]}
+        style={[styles.container, animatedContainerStyle]}
       >
         <Animated.View
           style={[
